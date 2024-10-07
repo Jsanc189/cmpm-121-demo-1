@@ -9,6 +9,7 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
+//set up autoclicker to only work when a user clicks once
 setInterval(addPies, 1000);
 
 function addPies() {
