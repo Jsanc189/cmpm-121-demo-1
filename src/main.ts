@@ -9,11 +9,24 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
+setInterval(addPies, 1000);  
+
+function addPies(){
+    if (total_pies !=0) {
+        incrementPies();
+    }
+}
+
+function incrementPies(){
+    total_pies++;
+    button.innerHTML = `You have ${total_pies} 🥧`;
+}
+
 let total_pies: number = 0;
 const button = document.createElement("button");
 button.innerHTML = "Click me! 🥧";
 button.addEventListener("click", () => {
-  total_pies++;
-  button.innerHTML = `You have ${total_pies} 🥧`;
+    incrementPies();
 });
 app.append(button);
+
