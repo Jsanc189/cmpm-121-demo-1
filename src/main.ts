@@ -10,12 +10,15 @@ header.innerHTML = gameName;
 app.append(header);
 
 //set up autoclicker to only work when a user clicks once
-setInterval(addPies, 1000);
+requestAnimationFrame(addPies);
 
-function addPies() {
-  if (total_pies != 0) {
+let lastTime = 0;
+function addPies(timestamp: number) {
+  if ((timestamp - lastTime) / 1000 > 1 && total_pies != 0) {
     incrementPies();
+    lastTime = timestamp;
   }
+  requestAnimationFrame(addPies);
 }
 
 function incrementPies() {
