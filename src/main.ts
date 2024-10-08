@@ -27,11 +27,11 @@ app.append(button);
 
 let growth_rate: number = 0;
 const upgrade = document.createElement("button");
-upgrade.innerHTML = `${growth_rate + 2}X 🥧\nCost: ${growth_rate * 10} 🥧`;
+upgrade.innerHTML = `${growth_rate + 2}X 🥧\nCost: 10 🥧`;
 upgrade.addEventListener("click", () => {
   if (
     total_pies / (growth_rate * 10) >= 1 &&
-    total_pies > (growth_rate + 1) * 10
+    total_pies >= (growth_rate + 1) * 10
   ) {
     total_pies = total_pies - (growth_rate + 1) * 10;
     incrementPies();
