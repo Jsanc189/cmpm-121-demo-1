@@ -52,12 +52,12 @@ function addPies(timestamp: number) {
   requestAnimationFrame(addPies);
 }
 
-//increment pies by 1 or by growth rate. 
+//increment pies by 1 or by growth rate.
 function incrementPies(isClicked: boolean = false) {
   if (isClicked || growth_rate === 0) {
-    total_pies = total_pies + 1
+    total_pies = total_pies + 1;
   } else {
-    total_pies = total_pies +  growth_rate * 1;;
+    total_pies = total_pies + growth_rate * 1;
   }
   pieCounterDiv.innerHTML = `Total Pies: ${total_pies} 🥧`;
   upgrade.innerHTML = `${growth_rate + 1}X 🥧\nCost: ${(growth_rate + 1) * 10} 🥧`;
