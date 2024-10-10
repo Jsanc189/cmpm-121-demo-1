@@ -41,7 +41,11 @@ upgrade.addEventListener("click", () => {
 app.append(upgrade);
 
 function addPies(timestamp: number) {
-  if ((timestamp - lastTime) / 1000 > 1 && total_pies != 0 && growth_rate != 0) {
+  if (
+    (timestamp - lastTime) / 1000 > 1 &&
+    total_pies != 0 &&
+    growth_rate != 0
+  ) {
     incrementPies();
     lastTime = timestamp;
   }
