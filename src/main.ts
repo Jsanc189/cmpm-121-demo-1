@@ -27,7 +27,7 @@ app.append(button);
 
 let growth_rate: number = 0;
 const upgrade = document.createElement("button");
-upgrade.innerHTML = `${growth_rate + 2}X 🥧\nCost: 10 🥧`;
+upgrade.innerHTML = `Auto ${growth_rate + 1}X 🥧\nCost: 10 🥧`;
 upgrade.addEventListener("click", () => {
   if (
     total_pies / (growth_rate * 10) >= 1 &&
@@ -41,7 +41,7 @@ upgrade.addEventListener("click", () => {
 app.append(upgrade);
 
 function addPies(timestamp: number) {
-  if ((timestamp - lastTime) / 1000 > 1 && total_pies != 0) {
+  if ((timestamp - lastTime) / 1000 > 1 && total_pies != 0 && growth_rate != 0) {
     incrementPies();
     lastTime = timestamp;
   }
@@ -50,11 +50,11 @@ function addPies(timestamp: number) {
 
 function incrementPies() {
   if (growth_rate > 0) {
-    total_pies = total_pies + 1 + growth_rate * 1;
+    total_pies = total_pies + growth_rate * 1;
   } else {
     total_pies = total_pies + 1;
   }
   pieCounterDiv.innerHTML = `Total Pies: ${total_pies} 🥧`;
-  upgrade.innerHTML = `${growth_rate + 2}X 🥧\nCost: ${(growth_rate + 1) * 10} 🥧`;
+  upgrade.innerHTML = `${growth_rate + 1}X 🥧\nCost: ${(growth_rate + 1) * 10} 🥧`;
   button.innerHTML = "Click me! 🥧";
 }
