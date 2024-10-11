@@ -20,7 +20,7 @@ const button = document.createElement("button");
 button.innerHTML = "Click me! <br>🥧";
 button.style.borderRadius = "100%";
 button.style.padding = "60px 20px";
-button.style.color = '#f5deb3';
+button.style.color = "#f5deb3";
 button.style.fontSize = "60px";
 button.style.cursor = "pointer";
 button.addEventListener("click", () => {
@@ -128,7 +128,7 @@ const upgradeCommand2 = new upgradeCommand(
   2.0,
   0,
   0,
-  `Oven`
+  `Oven`,
 );
 
 const growth_rate3: number = 50;
@@ -142,13 +142,13 @@ const upgradeCommand3 = new upgradeCommand(
   50,
   0,
   0,
-  `Pastry Chef`
+  `Pastry Chef`,
 );
 
 function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
   button.innerHTML = command.getDetails();
   button.style.borderRadius = "30px";
-  button.style.color = '#f5deb3';
+  button.style.color = "#f5deb3";
   button.addEventListener("click", () => {
     if (command.execute()) {
       button.innerHTML = command.getDetails();
