@@ -66,15 +66,14 @@ class upgradeCommand {
     if (total_pies >= this.cost) {
       total_pies -= this.cost;
       this.executeFunction();
-      this.nextRate += this.rate;
-      this.rate += this.nextRate;
       this.cost += Math.pow(this.cost, increaseFactor);
+      console.log(this.rate);
       this.totalRate += this.rate;
       this.clickCount++;
       if (this.rate > 0) {
         this.enableAutoClicker();
       }
-      this.name = `${this.upgradeName}: <div>Increase Growth Rate by ${this.nextRate.toFixed(2)}X`;
+      this.name = `${this.upgradeName}: <div>Increase Growth Rate by ${this.rate.toFixed(1)} 🥧/sec`;
       return true;
     }
     return false;
@@ -82,7 +81,7 @@ class upgradeCommand {
 
   getDetails(): string {
     if (this.clickCount > 0) {
-      return `${this.name} <br>Cost: ${this.cost.toFixed(2)} 🥧<br>Rate: ${this.totalRate.toFixed(2)} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
+      return `${this.name} <br>Cost: ${this.cost.toFixed(2)} 🥧<br>Rate: ${this.totalRate.toFixed(1)} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
     } else {
       return `${this.name} <br>Cost: ${this.cost}`;
     }
@@ -93,7 +92,7 @@ class upgradeCommand {
     const autoclick = (timestamp: number) => {
       if (timestamp - lastTime >= 1000) {
         total_pies += this.rate;
-        pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(2)}`;
+        pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
 
         lastTime = timestamp;
       }
@@ -109,8 +108,8 @@ const upgradeCommand1 = new upgradeCommand(
     return true;
   },
   10,
-  `Rolling Pin: <div>Increase Pies by ${growth_rate}X`,
-  0,
+  `Rolling Pin: <div>Increase Pies by ${growth_rate} 🥧/sec`,
+  0.1,
   0.1,
   0,
   0,
@@ -123,8 +122,8 @@ const upgradeCommand2 = new upgradeCommand(
     return true;
   },
   100,
-  `Oven: <div>Increase pies by ${growth_rate2}X`,
-  0,
+  `Oven: <div>Increase pies by ${growth_rate2} 🥧/sec`,
+  2.0,
   2.0,
   0,
   0,
@@ -137,8 +136,8 @@ const upgradeCommand3 = new upgradeCommand(
     return true;
   },
   1000,
-  `Pastry Chef: <div>Increase pies by ${growth_rate3}X`,
-  0,
+  `Pastry Chef: <div>Increase pies by ${growth_rate3} 🥧/sec`,
+  50,
   50,
   0,
   0,
@@ -152,7 +151,7 @@ function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
   button.addEventListener("click", () => {
     if (command.execute()) {
       button.innerHTML = command.getDetails();
-      pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)}`;
+      pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
     }
   });
   app.append(button);
