@@ -29,6 +29,8 @@ class upgradeCommand {
   public name: string;
   public rate: number;
   public nextRate: number;
+  public totalRate: number;
+  public clickCount: number;
 
   constructor(
     executeFunction: executeFunction,
@@ -36,12 +38,16 @@ class upgradeCommand {
     name: string,
     rate: number,
     nextRate: number,
+    totalRate: number,
+    clickCount: number,
   ) {
     this.executeFunction = executeFunction;
     this.cost = cost;
     this.name = name;
     this.rate = rate;
     this.nextRate = nextRate;
+    this.totalRate = 0;
+    this.clickCount = 0;
   }
 
   execute(): boolean {
@@ -50,7 +56,9 @@ class upgradeCommand {
       this.executeFunction();
       this.nextRate += this.rate;
       this.rate += this.nextRate;
-      this.cost += this.cost * 0.75;
+      this.cost += Math.floor(this.cost * 0.75);
+      this.totalRate += this.rate;
+      this.clickCount++;
       if (this.rate > 0) {
         this.enableAutoClicker();
       }
@@ -61,7 +69,12 @@ class upgradeCommand {
   }
 
   getDetails(): string {
-    return `${this.name} \nCost: ${this.cost} 🥧`;
+    if (this.clickCount > 0) {
+      return `${this.name} <br>Cost: ${this.cost} 🥧<br>Rate: ${this.totalRate} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
+  
+    } else {
+      return `${this.name} <br>Cost: ${this.cost}`;
+    }
   }
 
   enableAutoClicker() {
@@ -79,40 +92,43 @@ class upgradeCommand {
   }
 }
 
-let growth_rate: number = 0.1;
+const growth_rate: number = 0.1;
 const upgradeCommand1 = new upgradeCommand(
   () => {
-    growth_rate = 0;
     return true;
   },
   10,
   `Increase Growth Rate by ${growth_rate}X`,
   0,
   0.1,
+  0,
+  0
 );
 
-let growth_rate2: number = 2.0;
+const growth_rate2: number = 2.0;
 const upgradeCommand2 = new upgradeCommand(
   () => {
-    growth_rate2 = 2.0;
     return true;
   },
   100,
   `Increase Growth Rate to ${growth_rate2}X`,
   0,
   2.0,
+  0,
+  0,
 );
 
-let growth_rate3: number = 50;
+const growth_rate3: number = 50;
 const upgradeCommand3 = new upgradeCommand(
   () => {
-    growth_rate3 = 50;
     return true;
   },
   1000,
   `Increase Growth Rate to ${growth_rate3}X`,
   0,
   50,
+  0,
+  0,
 );
 
 function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
