@@ -7,15 +7,21 @@ document.title = gameName;
 
 const header = document.createElement("h1");
 header.innerHTML = gameName;
+header.style.fontSize = "100px";
 app.append(header);
 
 const pieCounterDiv = document.createElement("div");
 pieCounterDiv.innerHTML = `Total Pies: 0`;
+pieCounterDiv.style.fontSize = "80px";
 app.append(pieCounterDiv);
 
 let total_pies: number = 0;
 const button = document.createElement("button");
-button.innerHTML = "Click me! 🥧";
+button.innerHTML = "Click me! <br>🥧";
+button.style.borderRadius = "50%";
+button.style.padding = "10px 20px";
+button.style.fontSize = "60px";
+button.style.cursor = "pointer";
 button.addEventListener("click", () => {
   incrementPies(true, 0);
 });
