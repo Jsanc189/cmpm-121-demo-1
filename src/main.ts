@@ -46,8 +46,8 @@ class upgradeCommand {
     this.name = name;
     this.rate = rate;
     this.nextRate = nextRate;
-    this.totalRate = 0;
-    this.clickCount = 0;
+    this.totalRate = totalRate;
+    this.clickCount = clickCount;
   }
 
   execute(): boolean {
@@ -71,7 +71,6 @@ class upgradeCommand {
   getDetails(): string {
     if (this.clickCount > 0) {
       return `${this.name} <br>Cost: ${this.cost} 🥧<br>Rate: ${this.totalRate} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
-  
     } else {
       return `${this.name} <br>Cost: ${this.cost}`;
     }
@@ -102,7 +101,7 @@ const upgradeCommand1 = new upgradeCommand(
   0,
   0.1,
   0,
-  0
+  0,
 );
 
 const growth_rate2: number = 2.0;
