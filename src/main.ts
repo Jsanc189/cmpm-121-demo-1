@@ -50,7 +50,7 @@ class upgradeCommand {
       this.executeFunction();
       this.nextRate += this.rate;
       this.rate += this.nextRate;
-      this.cost += this.cost * .75;
+      this.cost += this.cost * 0.75;
       if (this.rate > 0) {
         this.enableAutoClicker();
       }
@@ -88,32 +88,31 @@ const upgradeCommand1 = new upgradeCommand(
   10,
   `Increase Growth Rate by ${growth_rate}X`,
   0,
-  0.1
-
+  0.1,
 );
 
-let growth_rate2: number = 2.0
+let growth_rate2: number = 2.0;
 const upgradeCommand2 = new upgradeCommand(
-    () => {
-        growth_rate2 =  2.0;
-        return true;
-    },
-    100,
-    `Increase Growth Rate to ${growth_rate2}X`,
-    0,
-    2.0
+  () => {
+    growth_rate2 = 2.0;
+    return true;
+  },
+  100,
+  `Increase Growth Rate to ${growth_rate2}X`,
+  0,
+  2.0,
 );
 
-let growth_rate3: number = 50
+let growth_rate3: number = 50;
 const upgradeCommand3 = new upgradeCommand(
-    () => {
-        growth_rate3 =  50;
-        return true;
-    },
-    1000,
-    `Increase Growth Rate to ${growth_rate3}X`,
-    0,
-    50
+  () => {
+    growth_rate3 = 50;
+    return true;
+  },
+  1000,
+  `Increase Growth Rate to ${growth_rate3}X`,
+  0,
+  50,
 );
 
 function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
