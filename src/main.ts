@@ -81,7 +81,7 @@ class upgradeCommand {
 
   getDetails(): string {
     if (this.clickCount > 0) {
-      return `${this.name} <br>Cost: ${this.cost.toFixed(2)} 🥧<br>Rate: ${this.totalRate.toFixed(1)} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
+      return `${this.name} <br>Cost: ${this.cost.toFixed(2)} 🥧<br>Total Purchased: ${this.clickCount} 💰`;
     } else {
       return `${this.name} <br>Cost: ${this.cost}`;
     }
