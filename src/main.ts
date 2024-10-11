@@ -18,14 +18,16 @@ app.append(pieCounterDiv);
 let total_pies: number = 0;
 const button = document.createElement("button");
 button.innerHTML = "Click me! <br>🥧";
-button.style.borderRadius = "50%";
-button.style.padding = "10px 20px";
+button.style.borderRadius = "100%";
+button.style.padding = "60px 20px";
+button.style.color = '#f5deb3';
 button.style.fontSize = "60px";
 button.style.cursor = "pointer";
 button.addEventListener("click", () => {
   incrementPies(true, 0);
 });
 app.append(button);
+app.append(document.createElement("br"));
 
 type executeFunction = () => boolean; // This function will represent the action of the upgrade.
 
@@ -37,6 +39,7 @@ class upgradeCommand {
   public nextRate: number;
   public totalRate: number;
   public clickCount: number;
+  public upgradeName: string;
 
   constructor(
     executeFunction: executeFunction,
@@ -46,6 +49,7 @@ class upgradeCommand {
     nextRate: number,
     totalRate: number,
     clickCount: number,
+    upgradeName: string,
   ) {
     this.executeFunction = executeFunction;
     this.cost = cost;
@@ -54,6 +58,7 @@ class upgradeCommand {
     this.nextRate = nextRate;
     this.totalRate = totalRate;
     this.clickCount = clickCount;
+    this.upgradeName = upgradeName;
   }
 
   execute(): boolean {
@@ -69,7 +74,7 @@ class upgradeCommand {
       if (this.rate > 0) {
         this.enableAutoClicker();
       }
-      this.name = `Increase Growth Rate by ${this.nextRate.toFixed(2)}X`;
+      this.name = `${this.upgradeName}: <div>Increase Growth Rate by ${this.nextRate.toFixed(2)}X`;
       return true;
     }
     return false;
@@ -104,11 +109,12 @@ const upgradeCommand1 = new upgradeCommand(
     return true;
   },
   10,
-  `Increase Growth Rate by ${growth_rate}X`,
+  `Rolling Pin: <div>Increase Pies by ${growth_rate}X`,
   0,
   0.1,
   0,
   0,
+  `Rolling Pin`,
 );
 
 const growth_rate2: number = 2.0;
@@ -117,11 +123,12 @@ const upgradeCommand2 = new upgradeCommand(
     return true;
   },
   100,
-  `Increase Growth Rate to ${growth_rate2}X`,
+  `Oven: <div>Increase pies by ${growth_rate2}X`,
   0,
   2.0,
   0,
   0,
+  `Oven`
 );
 
 const growth_rate3: number = 50;
@@ -130,15 +137,18 @@ const upgradeCommand3 = new upgradeCommand(
     return true;
   },
   1000,
-  `Increase Growth Rate to ${growth_rate3}X`,
+  `Pastry Chef: <div>Increase pies by ${growth_rate3}X`,
   0,
   50,
   0,
   0,
+  `Pastry Chef`
 );
 
 function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
   button.innerHTML = command.getDetails();
+  button.style.borderRadius = "30px";
+  button.style.color = '#f5deb3';
   button.addEventListener("click", () => {
     if (command.execute()) {
       button.innerHTML = command.getDetails();
@@ -165,5 +175,5 @@ function incrementPies(isClicked: boolean = false, growth_rate: number) {
     total_pies = total_pies + growth_rate;
   }
   pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
-  button.innerHTML = "Click me! 🥧";
+  button.innerHTML = "Click me! <br>🥧";
 }
