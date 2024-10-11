@@ -21,8 +21,6 @@ button.addEventListener("click", () => {
 });
 app.append(button);
 
-let growth_rate: number = 1;
-
 type executeFunction = () => boolean; // This function will represent the action of the upgrade.
 
 class upgradeCommand {
@@ -30,32 +28,33 @@ class upgradeCommand {
   public cost: number;
   public name: string;
   public rate: number;
-  public newRate: number;
+  public nextRate: number;
 
   constructor(
     executeFunction: executeFunction,
     cost: number,
     name: string,
     rate: number,
-    newRate: number,
+    nextRate: number,
   ) {
     this.executeFunction = executeFunction;
     this.cost = cost;
     this.name = name;
     this.rate = rate;
-    this.newRate = newRate;
+    this.nextRate = nextRate;
   }
 
   execute(): boolean {
     if (total_pies >= this.cost) {
       total_pies -= this.cost;
       this.executeFunction();
-      this.rate += this.rate;
-      this.cost *= this.rate;
+      this.nextRate += this.rate;
+      this.rate += this.nextRate;
+      this.cost += this.cost * .75;
       if (this.rate > 0) {
         this.enableAutoClicker();
       }
-      this.name = `Increase Growth Rate to ${this.rate}X`;
+      this.name = `Increase Growth Rate by ${this.nextRate}X`;
       return true;
     }
     return false;
@@ -80,15 +79,41 @@ class upgradeCommand {
   }
 }
 
+let growth_rate: number = 0.1;
 const upgradeCommand1 = new upgradeCommand(
   () => {
-    growth_rate = 1;
+    growth_rate = 0;
     return true;
   },
   10,
-  `Increase Growth Rate to ${growth_rate}X`,
-  1,
+  `Increase Growth Rate by ${growth_rate}X`,
   0,
+  0.1
+
+);
+
+let growth_rate2: number = 2.0
+const upgradeCommand2 = new upgradeCommand(
+    () => {
+        growth_rate2 =  2.0;
+        return true;
+    },
+    100,
+    `Increase Growth Rate to ${growth_rate2}X`,
+    0,
+    2.0
+);
+
+let growth_rate3: number = 50
+const upgradeCommand3 = new upgradeCommand(
+    () => {
+        growth_rate3 =  50;
+        return true;
+    },
+    1000,
+    `Increase Growth Rate to ${growth_rate3}X`,
+    0,
+    50
 );
 
 function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
@@ -104,6 +129,12 @@ function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
 
 const upgradeButton1 = document.createElement("button");
 setUpgradeButton(upgradeButton1, upgradeCommand1);
+
+const upgradeButton2 = document.createElement("button");
+setUpgradeButton(upgradeButton2, upgradeCommand2);
+
+const upgradeButton3 = document.createElement("button");
+setUpgradeButton(upgradeButton3, upgradeCommand3);
 
 //increment pies by 1 or by growth rate.
 function incrementPies(isClicked: boolean = false, growth_rate: number) {
