@@ -51,18 +51,19 @@ class upgradeCommand {
   }
 
   execute(): boolean {
+    const increaseFactor = .15;
     if (total_pies >= this.cost) {
       total_pies -= this.cost;
       this.executeFunction();
       this.nextRate += this.rate;
       this.rate += this.nextRate;
-      this.cost += Math.floor(this.cost * 0.75);
+      this.cost += Math.pow(this.cost, increaseFactor);
       this.totalRate += this.rate;
       this.clickCount++;
       if (this.rate > 0) {
         this.enableAutoClicker();
       }
-      this.name = `Increase Growth Rate by ${this.nextRate}X`;
+      this.name = `Increase Growth Rate by ${this.nextRate.toFixed(2)}X`;
       return true;
     }
     return false;
@@ -70,7 +71,7 @@ class upgradeCommand {
 
   getDetails(): string {
     if (this.clickCount > 0) {
-      return `${this.name} <br>Cost: ${this.cost} 🥧<br>Rate: ${this.totalRate} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
+      return `${this.name} <br>Cost: ${this.cost.toFixed(2)} 🥧<br>Rate: ${this.totalRate.toFixed(2)} 🥧/s <br>Total Purchased: ${this.clickCount} 💰`;
     } else {
       return `${this.name} <br>Cost: ${this.cost}`;
     }
@@ -81,7 +82,7 @@ class upgradeCommand {
     const autoclick = (timestamp: number) => {
       if (timestamp - lastTime >= 1000) {
         total_pies += this.rate;
-        pieCounterDiv.innerHTML = `Total Pies: ${total_pies}`;
+        pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(2)}`;
 
         lastTime = timestamp;
       }
@@ -135,7 +136,7 @@ function setUpgradeButton(button: HTMLButtonElement, command: upgradeCommand) {
   button.addEventListener("click", () => {
     if (command.execute()) {
       button.innerHTML = command.getDetails();
-      pieCounterDiv.innerHTML = `Total Pies: ${total_pies}`;
+      pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)}`;
     }
   });
   app.append(button);
@@ -157,6 +158,6 @@ function incrementPies(isClicked: boolean = false, growth_rate: number) {
   } else {
     total_pies = total_pies + growth_rate;
   }
-  pieCounterDiv.innerHTML = `Total Pies: ${total_pies} 🥧`;
+  pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
   button.innerHTML = "Click me! 🥧";
 }
