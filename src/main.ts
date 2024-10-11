@@ -51,7 +51,7 @@ class upgradeCommand {
   }
 
   execute(): boolean {
-    const increaseFactor = .15;
+    const increaseFactor = 0.15;
     if (total_pies >= this.cost) {
       total_pies -= this.cost;
       this.executeFunction();
