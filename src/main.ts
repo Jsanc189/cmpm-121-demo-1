@@ -2,9 +2,8 @@ import "./style.css";
 
 document.body.style.backgroundColor = "#1E3770";
 const app: HTMLDivElement = document.querySelector("#app")!;
-//app.style.backgroundColor = "#1E3770";
 
-const gameName = "Jackie's game (finally)";
+const gameName = "The Great Pie Pursuit";
 document.title = gameName;
 
 const header = document.createElement("h1");
@@ -40,6 +39,7 @@ class upgradeCommand {
   public totalRate: number;
   public clickCount: number;
   public upgradeName: string;
+  public decription: string;
 
   constructor(
     cost: number,
@@ -49,6 +49,7 @@ class upgradeCommand {
     totalRate: number,
     clickCount: number,
     upgradeName: string,
+    description: string,
   ) {
     this.cost = cost;
     this.name = name;
@@ -57,6 +58,7 @@ class upgradeCommand {
     this.totalRate = totalRate;
     this.clickCount = clickCount;
     this.upgradeName = upgradeName;
+    this.decription = description;
   }
 
   execute(): boolean {
@@ -107,6 +109,7 @@ interface Item {
   totalRate: number;
   clickCount: number;
   upgradeName: string;
+  description: string;
 }
 
 const availableItems: Item[] = [
@@ -118,6 +121,7 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Rolling Pin`,
+    description: 'A handy tool for rolling out pie crusts.',
   },
   {
     name: `Oven`,
@@ -127,6 +131,7 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Oven`,
+    description: 'Bake your pies to perfection in this reliable oven.',
   },
   {
     name: `Pastry Chef`,
@@ -136,8 +141,39 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Pastry Chef`,
+    description: 'Hire a skilled pastry chef to help you produce more pies.',
   },
+  {
+    name: `Bakery`,
+    cost: 10000,
+    rate: 1000,
+    nextRate: 1000,
+    totalRate: 0,
+    clickCount: 0,
+    upgradeName: `Bakery`,
+    description: 'Expand your business and open a bakery to produce even more pies.',
+  },
+  {
+    name: `Pi: 3.14`,
+    cost: 100000,
+    rate: 314159,
+    nextRate: 314159,
+    totalRate: 0,
+    clickCount: 0,
+    upgradeName: `Pi: 3.14`,
+    description: 'Discover the secret to the universe and increase your pie production exponentially.',
+  }
 ];
+
+const sidebar = document.createElement("div");
+sidebar.style.position = "fixed"; // Position absolute for fixed location
+sidebar.style.top = "0"; // Adjust to your layout needs
+sidebar.style.left = "0"; // Align to the left, for example
+sidebar.style.width = "380px"; // Set a width suitable for your content
+sidebar.style.height = "100%"; // Set a height suitable for your content
+sidebar.style.padding = "10px"; // Add some padding for better appearance
+
+document.body.appendChild(sidebar);
 
 availableItems.forEach((config) => {
   const command = new upgradeCommand(
@@ -148,6 +184,7 @@ availableItems.forEach((config) => {
     config.totalRate,
     config.clickCount,
     config.upgradeName,
+    config.description,
   );
 
   const button = document.createElement("button");
@@ -155,6 +192,7 @@ availableItems.forEach((config) => {
   button.style.borderRadius = "30px";
   button.style.color = "#f5deb3";
   button.style.backgroundColor = "#5D8FC1";
+  button.style.fontSize = "20px";
 
   button.addEventListener("click", () => {
     if (command.execute()) {
@@ -162,8 +200,15 @@ availableItems.forEach((config) => {
       pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
     }
   });
-  app.append(button);
-  //app.append(document.createElement("br"));
+
+  // Create a description element
+  const description = document.createElement("div");
+  description.textContent = config.description;
+  description.style.fontSize = "16px";
+  description.style.marginBottom = "10px";
+  description.style.color = "#23DF9A"
+  sidebar.append(button);
+  sidebar.append(description);
 });
 
 //increment pies by 1 or by growth rate.
