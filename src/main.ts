@@ -121,7 +121,7 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Rolling Pin`,
-    description: 'A handy tool for rolling out pie crusts.',
+    description: "A handy tool for rolling out pie crusts.",
   },
   {
     name: `Oven`,
@@ -131,7 +131,7 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Oven`,
-    description: 'Bake your pies to perfection in this reliable oven.',
+    description: "Bake your pies to perfection in this reliable oven.",
   },
   {
     name: `Pastry Chef`,
@@ -141,7 +141,7 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Pastry Chef`,
-    description: 'Hire a skilled pastry chef to help you produce more pies.',
+    description: "Hire a skilled pastry chef to help you produce more pies.",
   },
   {
     name: `Bakery`,
@@ -151,7 +151,8 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Bakery`,
-    description: 'Expand your business and open a bakery to produce even more pies.',
+    description:
+      "Expand your business and open a bakery to produce even more pies.",
   },
   {
     name: `Pi: 3.14`,
@@ -161,8 +162,9 @@ const availableItems: Item[] = [
     totalRate: 0,
     clickCount: 0,
     upgradeName: `Pi: 3.14`,
-    description: 'Discover the secret to the universe and increase your pie production exponentially.',
-  }
+    description:
+      "Discover the secret to the universe and increase your pie production exponentially.",
+  },
 ];
 
 const sidebar = document.createElement("div");
@@ -206,7 +208,7 @@ availableItems.forEach((config) => {
   description.textContent = config.description;
   description.style.fontSize = "16px";
   description.style.marginBottom = "10px";
-  description.style.color = "#23DF9A"
+  description.style.color = "#23DF9A";
   sidebar.append(button);
   sidebar.append(description);
 });
