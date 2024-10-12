@@ -23,7 +23,7 @@ button.innerHTML = "Click me! <br>🥧";
 button.style.borderRadius = "100%";
 button.style.padding = "60px 20px";
 button.style.color = "#f5deb3";
-button.style.backgroundColor = "#A884C4"
+button.style.backgroundColor = "#A884C4";
 button.style.fontSize = "60px";
 button.style.cursor = "pointer";
 button.addEventListener("click", () => {
@@ -109,10 +109,34 @@ interface Item {
   upgradeName: string;
 }
 
-const availableItems : Item[] = [
-  {name: `Rolling Pin`, cost: 10, rate: 0.1, nextRate: 0.1, totalRate: 0, clickCount: 0, upgradeName: `Rolling Pin`},
-  {name: `Oven`, cost: 100, rate: 2.0, nextRate: 2.0, totalRate: 0, clickCount: 0, upgradeName: `Oven`},
-  {name: `Pastry Chef`, cost: 1000, rate: 50, nextRate: 50, totalRate: 0, clickCount: 0, upgradeName: `Pastry Chef`},
+const availableItems: Item[] = [
+  {
+    name: `Rolling Pin`,
+    cost: 10,
+    rate: 0.1,
+    nextRate: 0.1,
+    totalRate: 0,
+    clickCount: 0,
+    upgradeName: `Rolling Pin`,
+  },
+  {
+    name: `Oven`,
+    cost: 100,
+    rate: 2.0,
+    nextRate: 2.0,
+    totalRate: 0,
+    clickCount: 0,
+    upgradeName: `Oven`,
+  },
+  {
+    name: `Pastry Chef`,
+    cost: 1000,
+    rate: 50,
+    nextRate: 50,
+    totalRate: 0,
+    clickCount: 0,
+    upgradeName: `Pastry Chef`,
+  },
 ];
 
 availableItems.forEach((config) => {
@@ -130,7 +154,7 @@ availableItems.forEach((config) => {
   button.innerHTML = command.getDetails();
   button.style.borderRadius = "30px";
   button.style.color = "#f5deb3";
-  button.style.backgroundColor = "#5D8FC1"
+  button.style.backgroundColor = "#5D8FC1";
 
   button.addEventListener("click", () => {
     if (command.execute()) {
