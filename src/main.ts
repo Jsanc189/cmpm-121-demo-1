@@ -1,22 +1,21 @@
 import "./style.css";
-
+//set up HTML BG, title, and header
 document.body.style.backgroundColor = "#1E3770";
 const app: HTMLDivElement = document.querySelector("#app")!;
-
 const gameName = "The Great Pie Pursuit";
 document.title = gameName;
-
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 header.style.fontSize = "100px";
 app.append(header);
 
+//set up pie counter
 const pieCounterDiv = document.createElement("div");
 pieCounterDiv.innerHTML = `Total Pies: 0`;
 pieCounterDiv.style.fontSize = "80px";
 app.append(pieCounterDiv);
 
-let total_pies: number = 0;
+// set up pie increment button
 const button = document.createElement("button");
 button.innerHTML = "Click me! <br>🥧";
 button.style.borderRadius = "100%";
@@ -31,7 +30,11 @@ button.addEventListener("click", () => {
 app.append(button);
 app.append(document.createElement("br"));
 
-class UpgradeCommand {
+
+let total_pies: number = 0;
+
+//upgrade commmand for pie upgrade buttons
+class PurchaseUpgradeCommand {
   public cost: number;
   public name: string;
   public rate: number;
@@ -61,12 +64,11 @@ class UpgradeCommand {
     this.decription = description;
   }
 
-  execute(): boolean {
+  executePurchase(): boolean {
     const increaseFactor = 0.15;
     if (total_pies >= this.cost) {
       total_pies -= this.cost;
       this.cost += Math.pow(this.cost, increaseFactor);
-      console.log(this.rate);
       this.totalRate += this.rate;
       this.clickCount++;
       if (this.rate > 0) {
@@ -78,6 +80,7 @@ class UpgradeCommand {
     return false;
   }
 
+  //returns string for button description
   getDetails(): string {
     if (this.clickCount > 0) {
       return `${this.name} <br>Cost: ${this.cost.toFixed(2)} 🥧<br>Total Purchased: ${this.clickCount} 💰`;
@@ -178,7 +181,7 @@ sidebar.style.padding = "10px"; // Add some padding for better appearance
 document.body.appendChild(sidebar);
 
 availableItems.forEach((config) => {
-  const command = new UpgradeCommand(
+  const command = new PurchaseUpgradeCommand(
     config.cost,
     `${config.name}: <div>Increase Growth Rate by ${config.rate.toFixed(1)} 🥧/sec`,
     config.rate,
@@ -197,7 +200,7 @@ availableItems.forEach((config) => {
   button.style.fontSize = "20px";
 
   button.addEventListener("click", () => {
-    if (command.execute()) {
+    if (command.executePurchase()) {
       button.innerHTML = command.getDetails();
       pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
     }
@@ -223,3 +226,8 @@ function incrementPies(isClicked: boolean = false, growth_rate: number) {
   pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
   button.innerHTML = "Click me! <br>🥧";
 }
+
+function updateButtonTest() {
+
+}
+  
