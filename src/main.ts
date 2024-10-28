@@ -30,7 +30,6 @@ button.addEventListener("click", () => {
 app.append(button);
 app.append(document.createElement("br"));
 
-
 let total_pies: number = 0;
 
 //upgrade commmand for pie upgrade buttons
@@ -226,8 +225,3 @@ function incrementPies(isClicked: boolean = false, growth_rate: number) {
   pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
   button.innerHTML = "Click me! <br>🥧";
 }
-
-function updateButtonTest() {
-
-}
-  
