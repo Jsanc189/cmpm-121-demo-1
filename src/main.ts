@@ -31,7 +31,7 @@ button.addEventListener("click", () => {
 app.append(button);
 app.append(document.createElement("br"));
 
-class upgradeCommand {
+class UpgradeCommand {
   public cost: number;
   public name: string;
   public rate: number;
@@ -178,7 +178,7 @@ sidebar.style.padding = "10px"; // Add some padding for better appearance
 document.body.appendChild(sidebar);
 
 availableItems.forEach((config) => {
-  const command = new upgradeCommand(
+  const command = new UpgradeCommand(
     config.cost,
     `${config.name}: <div>Increase Growth Rate by ${config.rate.toFixed(1)} 🥧/sec`,
     config.rate,
