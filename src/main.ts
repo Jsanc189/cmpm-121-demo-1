@@ -103,6 +103,16 @@ class PurchaseUpgradeCommand {
   }
 }
 
+//create a sidebar for upgrade buttons
+const sidebar = document.createElement("div");
+sidebar.style.position = "fixed"; 
+sidebar.style.top = "0"; 
+sidebar.style.left = "0"; 
+sidebar.style.width = "380px"; 
+sidebar.style.height = "100%"; 
+sidebar.style.padding = "10px"; 
+document.body.appendChild(sidebar);
+
 interface Item {
   name: string;
   cost: number;
@@ -114,6 +124,7 @@ interface Item {
   description: string;
 }
 
+//list of available items to purchase buttons
 const availableItems: Item[] = [
   {
     name: `Rolling Pin`,
@@ -169,16 +180,7 @@ const availableItems: Item[] = [
   },
 ];
 
-const sidebar = document.createElement("div");
-sidebar.style.position = "fixed"; // Position absolute for fixed location
-sidebar.style.top = "0"; // Adjust to your layout needs
-sidebar.style.left = "0"; // Align to the left, for example
-sidebar.style.width = "380px"; // Set a width suitable for your content
-sidebar.style.height = "100%"; // Set a height suitable for your content
-sidebar.style.padding = "10px"; // Add some padding for better appearance
-
-document.body.appendChild(sidebar);
-
+//create bew purchase upgrade command for each item and add to sidebar
 availableItems.forEach((config) => {
   const command = new PurchaseUpgradeCommand(
     config.cost,
