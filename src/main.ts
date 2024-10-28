@@ -105,12 +105,12 @@ class PurchaseUpgradeCommand {
 
 //create a sidebar for upgrade buttons
 const sidebar = document.createElement("div");
-sidebar.style.position = "fixed"; 
-sidebar.style.top = "0"; 
-sidebar.style.left = "0"; 
-sidebar.style.width = "380px"; 
-sidebar.style.height = "100%"; 
-sidebar.style.padding = "10px"; 
+sidebar.style.position = "fixed";
+sidebar.style.top = "0";
+sidebar.style.left = "0";
+sidebar.style.width = "380px";
+sidebar.style.height = "100%";
+sidebar.style.padding = "10px";
 document.body.appendChild(sidebar);
 
 interface Item {
