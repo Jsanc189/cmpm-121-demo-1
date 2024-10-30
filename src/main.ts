@@ -6,29 +6,33 @@ const gameName = "The Great Pie Pursuit";
 document.title = gameName;
 const header = document.createElement("h1");
 header.innerHTML = gameName;
-header.style.fontSize = "100px";
+header.style.fontSize = "70px";
 app.append(header);
 
 //set up pie counter
 const pieCounterDiv = document.createElement("div");
 pieCounterDiv.innerHTML = `Total Pies: 0`;
-pieCounterDiv.style.fontSize = "80px";
+pieCounterDiv.style.fontSize = "60px";
 app.append(pieCounterDiv);
 
 // set up pie increment button
 const button = document.createElement("button");
-button.innerHTML = "Click me! <br>🥧";
+button.innerHTML = "🥧";
 button.style.borderRadius = "100%";
-button.style.padding = "60px 20px";
+button.style.padding = ".1px .1px";
 button.style.color = "#f5deb3";
 button.style.backgroundColor = "#A884C4";
-button.style.fontSize = "60px";
+button.style.fontSize = "300px";
 button.style.cursor = "pointer";
 button.addEventListener("click", () => {
   incrementPies(true, 0);
 });
 app.append(button);
 app.append(document.createElement("br"));
+const space = document.createElement("div");
+space.innerHTML = "Click Me!";
+space.style.fontSize = "50px";
+app.append(space);
 
 let total_pies: number = 0;
 
@@ -108,10 +112,13 @@ const sidebar = document.createElement("div");
 sidebar.style.position = "fixed";
 sidebar.style.top = "0";
 sidebar.style.left = "0";
-sidebar.style.width = "380px";
+sidebar.style.width = "400px";
 sidebar.style.height = "100%";
 sidebar.style.padding = "10px";
 document.body.appendChild(sidebar);
+const sidebarTitle = document.createElement("h2");
+sidebar.append(sidebarTitle);
+sidebarTitle.textContent = "Upgrades";
 
 interface Item {
   name: string;
@@ -225,5 +232,5 @@ function incrementPies(isClicked: boolean = false, growth_rate: number) {
     total_pies = total_pies + growth_rate;
   }
   pieCounterDiv.innerHTML = `Total Pies: ${total_pies.toFixed(1)} 🥧`;
-  button.innerHTML = "Click me! <br>🥧";
+  button.innerHTML = "🥧";
 }
